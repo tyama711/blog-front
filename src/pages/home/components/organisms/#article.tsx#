@@ -1,0 +1,40 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import ArticleModel from "../../models/interfaces/article-model";
+
+const ArticleDate = styled.div`
+  color: gray;
+  font-weight: bold;
+`;
+
+const Title = styled.h1`
+  font-size: 30px;
+  margin-block-start: 0.2em;
+`;
+
+const Style = styled.article`
+  padding-bottom: 4em;
+`;
+
+interface ArticleProps {
+  article: ArticleModel;
+}
+
+export default function Article(props: ArticleProps) {
+  return (
+    <Style>
+      <header>
+        <ArticleDate>
+          {props.article.updateDate
+            ? `Updated ${props.article.updateDate}`
+            : `Posted ${props.article.createDate}`}
+        </ArticleDate>
+        <Link to={`/article/${props.article._id}`}>
+          <Title>{props.article.title}</Title>
+        </Link>
+      </header>
+      <div>{props.article.abstract}</div>
+    </Style>
+  );
+}

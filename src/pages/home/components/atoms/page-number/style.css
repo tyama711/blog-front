@@ -1,0 +1,8 @@
+.page-numbers {
+    padding: 0.5em 0.75em;
+}
+
+.page-numbers.current {
+    color: #767676;
+    display: inline-block;
+}
