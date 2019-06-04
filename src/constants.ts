@@ -3,7 +3,8 @@ const constantSets: { [key: string]: any } = {
     API_SERVER_URL: "http://localhost:5000",
     ARTICLE_API: "/articles",
     LOGIN_API: "/auth/login",
-    LOGOUT_API: "/auth/logout"
+    LOGOUT_API: "/auth/logout",
+    TOKEN_NAME: "koa:sess"
   },
   development: {},
   production: {},
@@ -23,6 +24,14 @@ class Constants {
 
   public static get LOGOUT_API_URL() {
     return constants.API_SERVER_URL + constants.LOGOUT_API;
+  }
+
+  public static get TOKEN_NAME() {
+    return constants.TOKEN_NAME;
+  }
+
+  public static get TOKEN_SIG_NAME() {
+    return constants.TOKEN_NAME + ".sig";
   }
 }
 

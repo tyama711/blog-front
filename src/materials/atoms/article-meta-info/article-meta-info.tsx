@@ -1,6 +1,7 @@
 import React from "react";
+import dateFormat from "dateformat";
 
-import "./style.css";
+import "./article-meta-info.css";
 
 interface ArticleMetaInfoProps {
   createDate: Date;
@@ -10,8 +11,9 @@ interface ArticleMetaInfoProps {
 export default function ArticleMetaInfo(props: ArticleMetaInfoProps) {
   return (
     <div className="article-meta-info">
-      {props.updateDate && `Updated ${props.updateDate}`}
-      {`Posted ${props.createDate}`}
+      Posted {dateFormat(props.createDate, "yyyy/mm/dd HH:MM")}
+      {props.updateDate &&
+        "Updated " + dateFormat(props.updateDate, "yyyy/mm/dd HH:MM")}
     </div>
   );
 }

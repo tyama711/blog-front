@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import BlogTitle from "../../atoms/blog-title";
 import LoginForm from "../../molecules/login-form";
 import User from "../../../models/interfaces/user";
 import { logoutUser } from "../../../helpers/api";
 
-import "./style.css";
-import "./style.scss";
+import "./masthead.scss";
 
 interface MastheadProps {
   user?: User;
@@ -47,7 +45,7 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
             <a
               href="#"
               id="dropdownMenuLink"
-              className="btn btn-secondary dropdown-toggle"
+              className="btn btn-primary dropdown-toggle"
               data-toggle="dropdown"
               role="button"
               aria-haspopup="true"
@@ -59,6 +57,9 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
               className="dropdown-menu dropdown-menu-right pull-right"
               aria-labelledby="dropdownMenuLink"
             >
+              <a href="/draft" className="dropdown-item">
+                New Article
+              </a>
               <a
                 href="#"
                 className="dropdown-item"
@@ -76,7 +77,11 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
     } else {
       userInfoElement = (
         <div className="user-info">
-          <a className="btn btn-secondary" onClick={this.openLoginForm}>
+          <a
+            href="#"
+            className="btn btn-secondary"
+            onClick={this.openLoginForm}
+          >
             Sign in
           </a>
         </div>

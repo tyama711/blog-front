@@ -2,6 +2,10 @@
 @import "node_modules/bootstrap/scss/_variables";
 @import "node_modules/bootstrap/scss/bootstrap";
 
+.user-info {
+  float: right;
+}
+
 nav{
   .navbar-nav li {
     cursor: pointer;

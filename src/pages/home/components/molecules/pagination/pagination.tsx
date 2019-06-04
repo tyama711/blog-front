@@ -4,7 +4,7 @@ import * as _ from "lodash";
 import PageNumber from "../../atoms/page-number";
 import Arrow from "../../atoms/arrow";
 
-import "./style.css";
+import "./pagination.scss";
 
 const PAGE_SIZE = 10;
 
@@ -19,7 +19,7 @@ export default function Pagination(props: PaginationProps) {
     <nav className="pagination" role="navigation">
       <div>
         {props.currentPage > 1 && (
-          <Link to={`?page=${props.currentPage - 1}`}>
+          <Link to={`?page=${props.currentPage - 1}`} className="prev-page">
             <Arrow direction="left" />
           </Link>
         )}
@@ -37,7 +37,7 @@ export default function Pagination(props: PaginationProps) {
         })}
 
         {props.currentPage < totalPages && (
-          <Link to={`?page=${props.currentPage + 1}`}>
+          <Link to={`?page=${props.currentPage + 1}`} className="next-page">
             <Arrow direction="right" />
           </Link>
         )}

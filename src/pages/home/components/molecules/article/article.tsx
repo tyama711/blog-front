@@ -3,7 +3,7 @@ import ArticleModel from "../../../../../models/interfaces/article";
 import ArticleMetaInfo from "../../../../../materials/atoms/article-meta-info";
 import ArticleTitle from "../../../../../materials/atoms/article-title";
 
-import "./style.css";
+import "./article.css";
 
 interface ArticleProps {
   article: ArticleModel;
@@ -19,7 +19,7 @@ export default function Article(props: ArticleProps) {
         />
         <ArticleTitle
           title={props.article.title}
-          linkUrl={`/${props.article._id}`}
+          linkUrl={`/article/${props.article._id}`}
         />
       </header>
       <div>{props.article.abstract}</div>

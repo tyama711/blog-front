@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./style.css";
+import "./page-number.css";
 
 interface PageNumberProps {
   page: number;
