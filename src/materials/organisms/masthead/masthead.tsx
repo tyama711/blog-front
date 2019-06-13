@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import BlogTitle from "../../atoms/blog-title";
 import LoginForm from "../../molecules/login-form";
 import User from "../../../models/interfaces/user";
@@ -57,9 +58,9 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
               className="dropdown-menu dropdown-menu-right pull-right"
               aria-labelledby="dropdownMenuLink"
             >
-              <a href="/draft" className="dropdown-item">
+              <Link to="/draft" className="dropdown-item">
                 New Article
-              </a>
+              </Link>
               <a
                 href="#"
                 className="dropdown-item"

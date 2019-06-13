@@ -65,5 +65,5 @@ export async function loginUser(username: string, password: string) {
 }
 
 export async function logoutUser() {
-  await axios.get(Constants.LOGOUT_API_URL);
+  await axios.get(Constants.LOGOUT_API_URL, { withCredentials: true });
 }

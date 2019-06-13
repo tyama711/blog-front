@@ -6,7 +6,7 @@ export default function BlogTitle() {
   return (
     <div className="blogTitle">
       <Link to={"/"}>
-        <h1>ブログはじめました。</h1>
+        <h1>ブログつくりました。</h1>
       </Link>
     </div>
   );

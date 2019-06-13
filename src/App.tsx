@@ -21,8 +21,6 @@ class App extends Component<{}, AppState> {
     this.state = { user: Cookies.getJSON("loggedUser") };
   }
 
-  componentDidMount() {}
-
   render() {
     return (
       <Router>

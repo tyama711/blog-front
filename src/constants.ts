@@ -1,17 +1,10 @@
-const constantSets: { [key: string]: any } = {
-  base: {
-    API_SERVER_URL: "http://localhost:5000",
-    ARTICLE_API: "/articles",
-    LOGIN_API: "/auth/login",
-    LOGOUT_API: "/auth/logout",
-    TOKEN_NAME: "koa:sess"
-  },
-  development: {},
-  production: {},
-  test: {}
+const constants: { [key: string]: any } = {
+  API_SERVER_URL: process.env.REACT_APP_API_SERVER_URL,
+  ARTICLE_API: "/articles",
+  LOGIN_API: "/auth/login",
+  LOGOUT_API: "/auth/logout",
+  TOKEN_NAME: "koa:sess"
 };
-const env = process.env.NODE_ENV || "development";
-const constants = Object.assign(constantSets.base, constantSets[env]);
 
 class Constants {
   public static get ARTICLE_API_URL() {

@@ -1,4 +1,4 @@
-import React, { Component, FormEvent } from "react";
+import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import * as Api from "../../../../helpers/api";
 
