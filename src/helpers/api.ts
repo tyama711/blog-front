@@ -1,6 +1,5 @@
 import axios from "axios";
 import urlJoin from "url-join";
-import Cookies from "js-cookie";
 import Article from "../models/interfaces/article";
 import User from "../models/interfaces/user";
 import Constants from "../constants";
@@ -41,9 +40,28 @@ export async function postArticle(
   body: string,
   abstract?: string
 ) {
-  const cookies = Cookies.get();
   await axios.post(
     Constants.ARTICLE_API_URL,
+    {
+      title,
+      content: {
+        type: "markdown",
+        body
+      },
+      abstract
+    },
+    { withCredentials: true }
+  );
+}
+
+export async function updateArticle(
+  id: string,
+  title: string,
+  body: string,
+  abstract?: string
+) {
+  await axios.put(
+    Constants.ARTICLE_API_URL + "/" + id,
     {
       title,
       content: {

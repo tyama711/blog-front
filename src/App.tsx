@@ -7,7 +7,12 @@ const Home = lazy(() => import("./pages/home/components/templates/home"));
 const Article = lazy(() =>
   import("./pages/article/components/templates/article")
 );
-const Draft = lazy(() => import("./pages/draft/components/templates/draft"));
+const NewArticle = lazy(() =>
+  import("./pages/new-article/components/templates/new-article")
+);
+const UpdateArticle = lazy(() =>
+  import("./pages/update-article/components/templates/update-article")
+);
 
 import "./App.scss";
 
@@ -28,7 +33,7 @@ class App extends Component<{}, AppState> {
           <Masthead
             user={this.state.user}
             onLoginSuccess={user => {
-              Cookies.set("loggedUser", user);
+              Cookies.set("loggedUser", user, { expires: 1 /* days */ });
               this.setState({ user });
             }}
             onLogoutSuccess={() => {
@@ -39,8 +44,14 @@ class App extends Component<{}, AppState> {
           <Suspense fallback={"Loading ..."}>
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/article/:id" exact component={Article} />
-              <Route path="/draft" exact component={Draft} />
+              <Route path="/article/new" exact component={NewArticle} />} />
+              <Route
+                path="/article/:id"
+                exact
+                render={props => <Article {...props} user={this.state.user} />}
+              />
+              <Route path="/article/:id/edit" exact component={UpdateArticle} />
+              } />
               <Route path="*" status={404}>
                 Resource Not Found
               </Route>

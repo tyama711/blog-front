@@ -58,7 +58,7 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
               className="dropdown-menu dropdown-menu-right pull-right"
               aria-labelledby="dropdownMenuLink"
             >
-              <Link to="/draft" className="dropdown-item">
+              <Link to="/article/new" className="dropdown-item">
                 New Article
               </Link>
               <a

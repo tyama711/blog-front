@@ -1,14 +1,22 @@
 import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 import MarkdownRenderer from "@nteract/markdown";
 import ArticleModel from "../../../../models/interfaces/article";
 import ArticleMetaInfo from "../../../../materials/atoms/article-meta-info";
 import ArticleTitle from "../../../../materials/atoms/article-title";
 import { fetchArticle } from "../../../../helpers/api";
 import { FetchStatus } from "../../../../helpers/enums";
+import User from "../../../../models/interfaces/user";
+
+import "./article.scss";
 
 interface PathParams {
   id: string;
+}
+
+interface ArticleProps {
+  user?: User;
 }
 
 interface ArticleState {
@@ -21,10 +29,10 @@ interface ContentProps {
 }
 
 export default class Article extends Component<
-  RouteComponentProps<PathParams>,
+  RouteComponentProps<PathParams> & ArticleProps,
   ArticleState
 > {
-  constructor(props: RouteComponentProps<PathParams>) {
+  constructor(props: RouteComponentProps<PathParams> & ArticleProps) {
     super(props);
     this.state = {
       fetchStatus: FetchStatus.NOT_YET
@@ -76,6 +84,9 @@ export default class Article extends Component<
                   createDate={article.createDate}
                   updateDate={article.updateDate}
                 />
+                {this.props.user && (
+                  <EditButton articleId={this.props.match.params.id} />
+                )}
                 <ArticleTitle title={article.title} />
               </header>
               <this.Content article={article} />
@@ -96,4 +107,14 @@ export default class Article extends Component<
         return <>Wrong ContentType !!!</>;
     }
   };
+}
+
+function EditButton(props: { articleId: string }) {
+  return (
+    <div className="edit-button">
+      <Link to={`${props.articleId}/edit`} className="btn btn-primary">
+        Edit
+      </Link>
+    </div>
+  );
 }
