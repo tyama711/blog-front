@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import queryString from "query-string";
 import Article from "../molecules/article";
-import ArticleModel from "../../../../models/interfaces/article";
+import ArticleModel from "../../../models/interfaces/article";
 import Pagination from "../molecules/pagination";
-import * as Api from "../../../../helpers/api";
-import { FetchStatus } from "../../../../helpers/enums";
+import * as Api from "../../../helpers/api";
+import { FetchStatus } from "../../../helpers/enums";
 
 interface HomeState {
   fetchStatus: FetchStatus;

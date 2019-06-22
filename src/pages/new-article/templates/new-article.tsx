@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
-import * as Api from "../../../../helpers/api";
-import EditForm from "../../../../materials/organisms/edit-form";
+import * as Api from "../../../helpers/api";
+import EditForm from "../../../materials/organisms/edit-form";
 
 export default class NewArticle extends Component<RouteComponentProps<{}>> {
   constructor(props: RouteComponentProps<{}>) {

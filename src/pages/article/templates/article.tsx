@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import MarkdownRenderer from "@nteract/markdown";
-import ArticleModel from "../../../../models/interfaces/article";
-import ArticleMetaInfo from "../../../../materials/atoms/article-meta-info";
-import ArticleTitle from "../../../../materials/atoms/article-title";
-import { fetchArticle } from "../../../../helpers/api";
-import { FetchStatus } from "../../../../helpers/enums";
-import User from "../../../../models/interfaces/user";
+import ArticleModel from "../../../models/interfaces/article";
+import ArticleMetaInfo from "../../../materials/atoms/article-meta-info";
+import ArticleTitle from "../../../materials/atoms/article-title";
+import { fetchArticle } from "../../../helpers/api";
+import { FetchStatus } from "../../../helpers/enums";
+import User from "../../../models/interfaces/user";
 
 interface PathParams {
   id: string;

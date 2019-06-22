@@ -2,6 +2,8 @@
 @import "node_modules/bootstrap/scss/_variables";
 @import "node_modules/bootstrap/scss/bootstrap";
 
+@import "login-form";
+
 .app {
   max-width: 767.98px;
   margin: auto;
@@ -11,8 +13,6 @@
   }
 
   .masthead {
-    @import "login-form.scss";
-    
     nav{
       .navbar-nav li {
         cursor: pointer;
@@ -104,8 +104,6 @@
       color: #767676;
       display: inline-block;
     }
-    
-
   }
 }
 

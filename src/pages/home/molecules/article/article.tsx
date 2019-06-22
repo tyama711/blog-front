@@ -1,7 +1,7 @@
 import React from "react";
-import ArticleModel from "../../../../../models/interfaces/article";
-import ArticleMetaInfo from "../../../../../materials/atoms/article-meta-info";
-import ArticleTitle from "../../../../../materials/atoms/article-title";
+import ArticleModel from "../../../../models/interfaces/article";
+import ArticleMetaInfo from "../../../../materials/atoms/article-meta-info";
+import ArticleTitle from "../../../../materials/atoms/article-title";
 
 import "./article.css";
 

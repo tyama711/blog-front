@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
 import User from "./models/interfaces/user";
 import Masthead from "./materials/organisms/masthead";
-const Home = lazy(() => import("./pages/home/components/templates/home"));
+const Home = lazy(() => import("./pages/home/templates/home"));
 const Article = lazy(() =>
-  import("./pages/article/components/templates/article")
+  import("./pages/article/templates/article")
 );
 const NewArticle = lazy(() =>
-  import("./pages/new-article/components/templates/new-article")
+  import("./pages/new-article/templates/new-article")
 );
 const UpdateArticle = lazy(() =>
-  import("./pages/update-article/components/templates/update-article")
+  import("./pages/update-article/templates/update-article")
 );
 
 interface AppState {

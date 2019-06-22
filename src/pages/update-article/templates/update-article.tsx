@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
-import * as Api from "../../../../helpers/api";
-import EditForm from "../../../../materials/organisms/edit-form";
-import { FetchStatus } from "../../../../helpers/enums";
+import * as Api from "../../../helpers/api";
+import EditForm from "../../../materials/organisms/edit-form";
+import { FetchStatus } from "../../../helpers/enums";
 
 interface PathParams {
   id: string;
