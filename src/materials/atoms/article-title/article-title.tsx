@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./article-title.css";
-
 interface ArticleTitleProps {
   title: string;
   linkUrl?: string;

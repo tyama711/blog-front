@@ -14,8 +14,6 @@ const UpdateArticle = lazy(() =>
   import("./pages/update-article/components/templates/update-article")
 );
 
-import "./App.scss";
-
 interface AppState {
   user?: User;
 }
@@ -29,7 +27,7 @@ class App extends Component<{}, AppState> {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="app">
           <Masthead
             user={this.state.user}
             onLoginSuccess={user => {

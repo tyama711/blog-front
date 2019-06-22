@@ -5,8 +5,6 @@ import LoginForm from "../../molecules/login-form";
 import User from "../../../models/interfaces/user";
 import { logoutUser } from "../../../helpers/api";
 
-import "./masthead.scss";
-
 interface MastheadProps {
   user?: User;
   onLoginSuccess: (user: User) => void;
@@ -90,19 +88,17 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
     }
 
     return (
-      <>
-        <div className="site-header">
-          <header>
-            {userInfoElement}
-            <BlogTitle />
-            <LoginForm
-              isOpen={this.state.loginFormIsOpen}
-              onClose={this.closeLoginForm}
-              onLoginSuccess={this.props.onLoginSuccess}
-            />
-          </header>
-        </div>
-      </>
+      <div className="masthead">
+        <header>
+          {userInfoElement}
+          <BlogTitle />
+          <LoginForm
+            isOpen={this.state.loginFormIsOpen}
+            onClose={this.closeLoginForm}
+            onLoginSuccess={this.props.onLoginSuccess}
+          />
+        </header>
+      </div>
     );
   }
 }

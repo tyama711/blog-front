@@ -1,8 +1,6 @@
 import React from "react";
 import dateFormat from "dateformat";
 
-import "./article-meta-info.css";
-
 interface ArticleMetaInfoProps {
   createDate: Date;
   updateDate?: Date;

@@ -9,8 +9,6 @@ import { fetchArticle } from "../../../../helpers/api";
 import { FetchStatus } from "../../../../helpers/enums";
 import User from "../../../../models/interfaces/user";
 
-import "./article.scss";
-
 interface PathParams {
   id: string;
 }
@@ -85,7 +83,12 @@ export default class Article extends Component<
                   updateDate={article.updateDate}
                 />
                 {this.props.user && (
-                  <EditButton articleId={this.props.match.params.id} />
+                  <Link
+                    to={`/article/${this.props.match.params.id}/edit`}
+                    className="btn btn-primary edit-button"
+                  >
+                    Edit
+                  </Link>
                 )}
                 <ArticleTitle title={article.title} />
               </header>
@@ -107,14 +110,4 @@ export default class Article extends Component<
         return <>Wrong ContentType !!!</>;
     }
   };
-}
-
-function EditButton(props: { articleId: string }) {
-  return (
-    <div className="edit-button">
-      <Link to={`${props.articleId}/edit`} className="btn btn-primary">
-        Edit
-      </Link>
-    </div>
-  );
 }

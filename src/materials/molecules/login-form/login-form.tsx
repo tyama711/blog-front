@@ -4,8 +4,6 @@ import cn from "classnames";
 import { loginUser } from "../../../helpers/api";
 import User from "../../../models/interfaces/user";
 
-import "./login-form.scss";
-
 const customStyles = {
   content: {
     top: "50%",
@@ -93,12 +91,12 @@ export default class LoginForm extends React.Component<
         contentLabel="Example Modal"
       >
         <div>
-          <h5 className="loginForm__heading mx-auto mb-2 text-center">
+          <h5 className="login-form__heading mx-auto mb-2 text-center">
             Sign in
           </h5>
-          <div className="loginForm__formContainer d-flex flex-column px-3 py-4">
+          <div className="login-form__formContainer d-flex flex-column px-3 py-4">
             <form
-              className="loginForm__form d-flex flex-column mx-auto mb-2"
+              className="login-form__form d-flex flex-column mx-auto mb-2"
               onSubmit={this.handleSubmitForm}
             >
               {this.state.error && (
@@ -109,7 +107,7 @@ export default class LoginForm extends React.Component<
                   <br />
                 </span>
               )}
-              <span className="loginForm__formHeader my-3 text-center">
+              <span className="login-form__formHeader my-3 text-center">
                 Sign in with your username
               </span>
               <div className="form-group">
@@ -140,7 +138,7 @@ export default class LoginForm extends React.Component<
                   <label htmlFor="registerInputPassword">Password</label>
                 </div>
               </div>
-              <button type="submit" className="btn loginForm__signIn">
+              <button type="submit" className="btn login-form__signIn">
                 Sign in
               </button>
             </form>

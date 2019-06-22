@@ -4,8 +4,6 @@ import * as _ from "lodash";
 import PageNumber from "../../atoms/page-number";
 import Arrow from "../../atoms/arrow";
 
-import "./pagination.scss";
-
 const PAGE_SIZE = 10;
 
 interface PaginationProps {
