@@ -103,7 +103,7 @@ export default class Home extends Component<RouteComponentProps, HomeState> {
           totalArticles={this.state.totalArticles}
           currentPage={this.state.currentPage}
         />
-        <img src="http://kauntah.herokuapp.com/counter?offset=0" />
+        <script type="text/javascript" src="http://www.websitegoodies.com/counter.php?id=73594&color="></script>
       </>
     );
   }
