@@ -18,11 +18,12 @@ export async function fetchArticles(page = 1): Promise<FetchArticlesResponse> {
   );
 
   response.data.articles = response.data.articles.map((article: Article) => {
-    article.createDate = new Date(article.createDate);
+    const retArticle = article;
+    retArticle.createDate = new Date(article.createDate);
     if (article.updateDate !== undefined) {
-      article.updateDate = new Date(article.updateDate);
+      retArticle.updateDate = new Date(article.updateDate);
     }
-    return article;
+    return retArticle;
   });
 
   return response.data;

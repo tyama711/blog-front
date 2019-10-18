@@ -9,20 +9,20 @@ interface ArticleProps {
   article: ArticleModel;
 }
 
-export default function Article(props: ArticleProps) {
+export default function Article({ article }: ArticleProps) {
   return (
     <div className="article">
       <header>
         <ArticleMetaInfo
-          createDate={props.article.createDate}
-          updateDate={props.article.updateDate}
+          createDate={article.createDate}
+          updateDate={article.updateDate}
         />
         <ArticleTitle
-          title={props.article.title}
-          linkUrl={`/article/${props.article._id}`}
+          title={article.title}
+          linkUrl={`/article/${article._id}`}
         />
       </header>
-      <div>{props.article.abstract}</div>
+      <div>{article.abstract}</div>
     </div>
   );
 }

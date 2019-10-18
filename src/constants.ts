@@ -1,5 +1,5 @@
-const constants: { [key: string]: any } = {
-  API_SERVER_URL: process.env.REACT_APP_API_SERVER_URL,
+const constants: { [key: string]: string } = {
+  API_SERVER_URL: process.env.REACT_APP_API_SERVER_URL || "",
   ARTICLE_API: "/articles",
   LOGIN_API: "/auth/login",
   LOGOUT_API: "/auth/logout",

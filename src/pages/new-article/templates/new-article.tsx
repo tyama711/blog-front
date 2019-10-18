@@ -11,8 +11,9 @@ export default class NewArticle extends Component<RouteComponentProps<{}>> {
   }
 
   async postArticle(title: string, body: string) {
+    const { history } = this.props;
     await Api.postArticle(title, body);
-    this.props.history.push("/");
+    history.push("/");
   }
 
   render() {

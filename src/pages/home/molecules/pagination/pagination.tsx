@@ -11,19 +11,22 @@ interface PaginationProps {
   currentPage: number;
 }
 
-export default function Pagination(props: PaginationProps) {
-  const totalPages = Math.floor((props.totalArticles - 1) / PAGE_SIZE) + 1;
+export default function Pagination({
+  totalArticles,
+  currentPage
+}: PaginationProps) {
+  const totalPages = Math.floor((totalArticles - 1) / PAGE_SIZE) + 1;
   return (
     <nav className="pagination" role="navigation">
       <div>
-        {props.currentPage > 1 && (
-          <Link to={`?page=${props.currentPage - 1}`} className="prev-page">
+        {currentPage > 1 && (
+          <Link to={`?page=${currentPage - 1}`} className="prev-page">
             <Arrow direction="left" />
           </Link>
         )}
 
         {_.range(1, totalPages + 1).map(page => {
-          if (page === props.currentPage) {
+          if (page === currentPage) {
             return <PageNumber key={page} page={page} current />;
           }
           return (
@@ -33,8 +36,8 @@ export default function Pagination(props: PaginationProps) {
           );
         })}
 
-        {props.currentPage < totalPages && (
-          <Link to={`?page=${props.currentPage + 1}`} className="next-page">
+        {currentPage < totalPages && (
+          <Link to={`?page=${currentPage + 1}`} className="next-page">
             <Arrow direction="right" />
           </Link>
         )}

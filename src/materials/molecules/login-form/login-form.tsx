@@ -59,12 +59,13 @@ export default class LoginForm extends React.Component<
   };
 
   handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    const { onLoginSuccess, onClose } = this.props;
     e.preventDefault();
     if (this.username !== null && this.password !== null) {
       try {
         const user = await loginUser(this.username.value, this.password.value);
-        this.props.onLoginSuccess(user);
-        this.props.onClose();
+        onLoginSuccess(user);
+        onClose();
       } catch (err) {
         this.setState({ error: true });
       }
@@ -86,11 +87,13 @@ export default class LoginForm extends React.Component<
   };
 
   render() {
+    const { isOpen, onClose } = this.props;
+    const { error } = this.state;
     return (
       <Modal
-        isOpen={this.props.isOpen}
+        isOpen={isOpen}
         onAfterOpen={this.afterOpenModal}
-        onRequestClose={this.props.onClose}
+        onRequestClose={onClose}
         style={customStyles}
         contentLabel="Example Modal"
       >
@@ -103,7 +106,7 @@ export default class LoginForm extends React.Component<
               className="login-form__form d-flex flex-column mx-auto mb-2"
               onSubmit={this.handleSubmitForm}
             >
-              {this.state.error && (
+              {error && (
                 <span>
                   Login failed !!
                   <br />
@@ -124,7 +127,9 @@ export default class LoginForm extends React.Component<
                     onFocus={this.handleFocusInput}
                     onBlur={this.handleBlurInput}
                     autoComplete="username"
-                    ref={el => (this.username = el)}
+                    ref={el => {
+                      this.username = el;
+                    }}
                   />
                   <label htmlFor="registerInputUsername">Username</label>
                 </div>
@@ -137,7 +142,9 @@ export default class LoginForm extends React.Component<
                     onFocus={this.handleFocusInput}
                     onBlur={this.handleBlurInput}
                     autoComplete="current-password"
-                    ref={el => (this.password = el)}
+                    ref={el => {
+                      this.password = el;
+                    }}
                   />
                   <label htmlFor="registerInputPassword">Password</label>
                 </div>

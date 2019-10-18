@@ -6,12 +6,14 @@ interface ArticleMetaInfoProps {
   updateDate?: Date;
 }
 
-export default function ArticleMetaInfo(props: ArticleMetaInfoProps) {
+export default function ArticleMetaInfo({
+  createDate,
+  updateDate
+}: ArticleMetaInfoProps) {
   return (
     <div className="article-meta-info">
-      {dateFormat(props.createDate, "yyyy/mm/dd")}
-      {props.updateDate &&
-        ` (Updated ${dateFormat(props.updateDate, "yyyy/mm/dd")})`}
+      {dateFormat(createDate, "yyyy/mm/dd")}
+      {updateDate && ` (Updated ${dateFormat(updateDate, "yyyy/mm/dd")})`}
     </div>
   );
 }

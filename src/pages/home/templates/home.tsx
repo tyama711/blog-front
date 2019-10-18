@@ -5,7 +5,7 @@ import Article from "../molecules/article";
 import ArticleModel from "../../../models/interfaces/article";
 import Pagination from "../molecules/pagination";
 import * as Api from "../../../helpers/api";
-import { FetchStatus } from "../../../helpers/enums";
+import FetchStatus from "../../../helpers/enums";
 
 interface HomeState {
   fetchStatus: FetchStatus;
@@ -19,6 +19,21 @@ interface QueryParams {
 }
 
 export default class Home extends Component<RouteComponentProps, HomeState> {
+  static parseQueryParams(query: string): QueryParams {
+    const { page } = queryString.parse(query);
+    let currentPage: number;
+
+    if (page === undefined || page === null) {
+      currentPage = 1;
+    } else if (Array.isArray(page)) {
+      currentPage = parseInt(page[0], 10);
+    } else {
+      currentPage = parseInt(page, 10);
+    }
+
+    return { page: currentPage };
+  }
+
   constructor(props: RouteComponentProps) {
     super(props);
 
@@ -31,34 +46,43 @@ export default class Home extends Component<RouteComponentProps, HomeState> {
   }
 
   componentDidMount() {
-    this.onUpdateQuery(this.props.location.search);
+    const { location } = this.props;
+    this.onUpdateQuery(location.search);
   }
 
   componentDidUpdate(prevProps: RouteComponentProps) {
-    if (this.props.location.search !== prevProps.location.search) {
-      this.onUpdateQuery(this.props.location.search);
+    const { location } = this.props;
+    if (location.search !== prevProps.location.search) {
+      this.onUpdateQuery(location.search);
     }
   }
 
   onUpdateQuery(query: string) {
-    const { page } = this.parseQueryParams(query);
+    const { page } = Home.parseQueryParams(query);
     this.updateArticles(page);
   }
 
-  parseQueryParams(query: string): QueryParams {
-    const { page } = queryString.parse(query);
-    let currentPage: number;
+  Content = () => {
+    const { articles, fetchStatus } = this.state;
 
-    if (page === undefined || page === null) {
-      currentPage = 1;
-    } else if (Array.isArray(page)) {
-      currentPage = parseInt(page[0]);
-    } else {
-      currentPage = parseInt(page);
+    switch (fetchStatus) {
+      case FetchStatus.NOT_YET:
+      case FetchStatus.FETCHING:
+        return <>Loading ...</>;
+      case FetchStatus.NOT_FOUND:
+        return <>Resource Not Found !!!</>;
+      case FetchStatus.SUCCEEDED:
+        return (
+          <>
+            {articles.map(article => (
+              <Article key={article._id} article={article} />
+            ))}
+          </>
+        );
+      default:
+        return <>Something Wrong !!!</>;
     }
-
-    return { page: currentPage };
-  }
+  };
 
   updateArticles(page: number) {
     this.setState({
@@ -83,7 +107,7 @@ export default class Home extends Component<RouteComponentProps, HomeState> {
           });
         }
       })
-      .catch(error => {
+      .catch(() => {
         this.setState({
           fetchStatus: FetchStatus.FAILED
         });
@@ -91,6 +115,7 @@ export default class Home extends Component<RouteComponentProps, HomeState> {
   }
 
   render() {
+    const { totalArticles, currentPage } = this.state;
     return (
       <>
         <header className="page-header">
@@ -99,31 +124,8 @@ export default class Home extends Component<RouteComponentProps, HomeState> {
         <main className="site-main">
           <this.Content />
         </main>
-        <Pagination
-          totalArticles={this.state.totalArticles}
-          currentPage={this.state.currentPage}
-        />
+        <Pagination totalArticles={totalArticles} currentPage={currentPage} />
       </>
     );
   }
-
-  Content = () => {
-    switch (this.state.fetchStatus) {
-      case FetchStatus.NOT_YET:
-      case FetchStatus.FETCHING:
-        return <>Loading ...</>;
-      case FetchStatus.NOT_FOUND:
-        return <>Resource Not Found !!!</>;
-      case FetchStatus.FAILED:
-        return <>Something Wrong !!!</>;
-      case FetchStatus.SUCCEEDED:
-        return (
-          <>
-            {this.state.articles.map(article => (
-              <Article key={article._id} article={article} />
-            ))}
-          </>
-        );
-    }
-  };
 }

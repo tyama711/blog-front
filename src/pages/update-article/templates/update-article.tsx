@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
 import * as Api from "../../../helpers/api";
 import EditForm from "../../../materials/organisms/edit-form";
-import { FetchStatus } from "../../../helpers/enums";
+import FetchStatus from "../../../helpers/enums";
 
 interface PathParams {
   id: string;
@@ -33,15 +33,16 @@ export default class UpdateArticle extends Component<
   }
 
   async updateArticle(title: string, body: string) {
-    const { id } = this.props.match.params;
-    await Api.updateArticle(id, title, body);
-    this.props.history.push(`../${id}`);
+    const { match, history } = this.props;
+    await Api.updateArticle(match.params.id, title, body);
+    history.push(`../${match.params.id}`);
   }
 
   async fetchArticle() {
+    const { match } = this.props;
     try {
       this.setState({ fetchStatus: FetchStatus.FETCHING });
-      const article = await Api.fetchArticle(this.props.match.params.id);
+      const article = await Api.fetchArticle(match.params.id);
       this.setState({
         fetchStatus: FetchStatus.SUCCEEDED,
         title: article.title,
@@ -53,18 +54,20 @@ export default class UpdateArticle extends Component<
   }
 
   render() {
-    switch (this.state.fetchStatus) {
+    const { title, body, fetchStatus, error } = this.state;
+
+    switch (fetchStatus) {
       case FetchStatus.SUCCEEDED:
         return (
           <EditForm
             editType="update"
             postArticleFunc={this.updateArticle}
-            initTitle={this.state.title}
-            initBody={this.state.body}
+            initTitle={title}
+            initBody={body}
           />
         );
       case FetchStatus.FAILED:
-        return this.state.error || "Something Wrong !!!";
+        return error || "Something Wrong !!!";
       default:
         return "Loading...";
     }

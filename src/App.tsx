@@ -24,14 +24,15 @@ class App extends Component<{}, AppState> {
   }
 
   render() {
+    const { user } = this.state;
     return (
       <Router>
         <div className="app">
           <Masthead
-            user={this.state.user}
-            onLoginSuccess={user => {
-              Cookies.set("loggedUser", user, { expires: 1 /* days */ });
-              this.setState({ user });
+            user={user}
+            onLoginSuccess={username => {
+              Cookies.set("loggedUser", username, { expires: 1 /* days */ });
+              this.setState({ user: username });
             }}
             onLogoutSuccess={() => {
               Cookies.remove("loggedUser");
@@ -41,20 +42,22 @@ class App extends Component<{}, AppState> {
           <Suspense fallback="Loading ...">
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/article/new" exact component={NewArticle} />} />
+              <Route path="/article/new" exact component={NewArticle} />
               <Route
                 path="/article/:id"
                 exact
-                render={props => <Article {...props} user={this.state.user} />}
+                render={props => <Article {...props} user={user} />}
               />
               <Route path="/article/:id/edit" exact component={UpdateArticle} />
-              } />
               <Route path="*" status={404}>
                 Resource Not Found
               </Route>
             </Switch>
           </Suspense>
-          <img src="https://www.simple-counter.com/hit.php?id=zmnaxo&nd=8&nc=4&bc=1" />
+          <img
+            src="https://www.simple-counter.com/hit.php?id=zmnaxo&nd=8&nc=4&bc=1"
+            alt="Access Counter"
+          />
         </div>
       </Router>
     );

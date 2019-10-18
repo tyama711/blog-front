@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FetchStatus } from "../../helpers/enums";
+import FetchStatus from "../../helpers/enums";
 
 interface EditFormProps {
   editType: "new" | "update";
@@ -39,11 +39,14 @@ export default class EditForm extends Component<EditFormProps, EditFormState> {
   }
 
   async handleClickButton() {
-    if (this.state.fetchStatus === FetchStatus.FETCHING) return;
+    const { postArticleFunc } = this.props;
+    const { title, body, fetchStatus } = this.state;
+
+    if (fetchStatus === FetchStatus.FETCHING) return;
 
     try {
       this.setState({ fetchStatus: FetchStatus.FETCHING });
-      await this.props.postArticleFunc(this.state.title, this.state.body);
+      await postArticleFunc(title, body);
     } catch (err) {
       this.setState({ fetchStatus: FetchStatus.FAILED, error: err });
     }
@@ -51,6 +54,8 @@ export default class EditForm extends Component<EditFormProps, EditFormState> {
 
   render() {
     const { editType } = this.props;
+    const { title, body, error } = this.state;
+
     return (
       <>
         <header className="page-header">
@@ -63,7 +68,7 @@ export default class EditForm extends Component<EditFormProps, EditFormState> {
               className="form-control"
               id="articleTitle"
               onChange={this.handleChangeTitle}
-              value={this.state.title}
+              value={title}
             />
           </div>
           <div className="form-group">
@@ -73,12 +78,12 @@ export default class EditForm extends Component<EditFormProps, EditFormState> {
               id="articleText"
               rows={3}
               onChange={this.handleChangeText}
-              value={this.state.body}
+              value={body}
             />
           </div>
-          {this.state.error && (
+          {error && (
             <p className="text-danger">
-              {this.state.error.name}: {this.state.error.message}
+              `{error.name} : {error.message}`
             </p>
           )}
           <button

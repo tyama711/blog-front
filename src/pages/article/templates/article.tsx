@@ -6,7 +6,7 @@ import ArticleModel from "../../../models/interfaces/article";
 import ArticleMetaInfo from "../../../materials/atoms/article-meta-info";
 import ArticleTitle from "../../../materials/atoms/article-title";
 import { fetchArticle } from "../../../helpers/api";
-import { FetchStatus } from "../../../helpers/enums";
+import FetchStatus from "../../../helpers/enums";
 import User from "../../../models/interfaces/user";
 
 interface PathParams {
@@ -38,11 +38,13 @@ export default class Article extends Component<
   }
 
   componentDidMount() {
+    const { match } = this.props;
+
     this.setState({
       fetchStatus: FetchStatus.FETCHING
     });
 
-    fetchArticle(this.props.match.params.id)
+    fetchArticle(match.params.id)
       .then(article => {
         this.setState({
           fetchStatus: FetchStatus.SUCCEEDED,
@@ -62,43 +64,6 @@ export default class Article extends Component<
       });
   }
 
-  render() {
-    const { fetchStatus, article } = this.state;
-
-    switch (fetchStatus) {
-      case FetchStatus.NOT_YET:
-      case FetchStatus.FETCHING:
-        return <>Loading ...</>;
-      case FetchStatus.NOT_FOUND:
-        return <>Resource Not Found !!!</>;
-      case FetchStatus.FAILED:
-        return <>Something Wrong !!!</>;
-      case FetchStatus.SUCCEEDED:
-        return (
-          article && (
-            <>
-              <header>
-                <ArticleMetaInfo
-                  createDate={article.createDate}
-                  updateDate={article.updateDate}
-                />
-                {this.props.user && (
-                  <Link
-                    to={`/article/${this.props.match.params.id}/edit`}
-                    className="btn btn-primary edit-button"
-                  >
-                    Edit
-                  </Link>
-                )}
-                <ArticleTitle title={article.title} />
-              </header>
-              <this.Content article={article} />
-            </>
-          )
-        );
-    }
-  }
-
   Content = (props: ContentProps) => {
     const { article } = props;
     switch (article.content.type) {
@@ -110,4 +75,42 @@ export default class Article extends Component<
         return <>Wrong ContentType !!!</>;
     }
   };
+
+  render() {
+    const { user, match } = this.props;
+    const { fetchStatus, article } = this.state;
+
+    switch (fetchStatus) {
+      case FetchStatus.NOT_YET:
+      case FetchStatus.FETCHING:
+        return <>Loading ...</>;
+      case FetchStatus.NOT_FOUND:
+        return <>Resource Not Found !!!</>;
+      case FetchStatus.SUCCEEDED:
+        return (
+          article && (
+            <>
+              <header>
+                <ArticleMetaInfo
+                  createDate={article.createDate}
+                  updateDate={article.updateDate}
+                />
+                {user && (
+                  <Link
+                    to={`/article/${match.params.id}/edit`}
+                    className="btn btn-primary edit-button"
+                  >
+                    Edit
+                  </Link>
+                )}
+                <ArticleTitle title={article.title} />
+              </header>
+              <this.Content article={article} />
+            </>
+          )
+        );
+      default:
+        return <>Something Wrong !!!</>;
+    }
+  }
 }

@@ -7,11 +7,11 @@ interface PageNumberProps {
   current: boolean;
 }
 
-export default function PageNumber(props: PageNumberProps) {
-  if (props.current) {
-    return <span className="page-numbers current">{props.page}</span>;
+export default function PageNumber({ current, page }: PageNumberProps) {
+  if (current) {
+    return <span className="page-numbers current">{page}</span>;
   }
-  return <span className="page-numbers">{props.page}</span>;
+  return <span className="page-numbers">{page}</span>;
 }
 
 PageNumber.defaultProps = {

@@ -34,7 +34,8 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
   }
 
   render() {
-    const { user } = this.props;
+    const { user, onLoginSuccess, onLogoutSuccess } = this.props;
+    const { loginFormIsOpen } = this.state;
 
     let userInfoElement;
     if (user !== undefined) {
@@ -64,7 +65,7 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
                 className="dropdown-item"
                 onClick={() => {
                   logoutUser();
-                  this.props.onLogoutSuccess();
+                  onLogoutSuccess();
                 }}
               >
                 Logout
@@ -93,9 +94,9 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
           {userInfoElement}
           <BlogTitle />
           <LoginForm
-            isOpen={this.state.loginFormIsOpen}
+            isOpen={loginFormIsOpen}
             onClose={this.closeLoginForm}
-            onLoginSuccess={this.props.onLoginSuccess}
+            onLoginSuccess={onLoginSuccess}
           />
         </header>
       </div>

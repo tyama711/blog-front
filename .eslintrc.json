@@ -7,9 +7,7 @@
   "extends": ["airbnb",
               "plugin:@typescript-eslint/recommended",
               "plugin:prettier/recommended",
-              "prettier",
-              "prettier/@typescript-eslint",
-              "prettier/react"],
+              "prettier/@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -20,6 +18,11 @@
   "rules": {
     "prettier/prettier": "error",
     "no-use-before-define": "off", // "@typescript-eslint/no-use-before-define"と重複するので無効化
-    "@typescript-eslint/no-use-before-define": "off"
+    "@typescript-eslint/no-use-before-define": "off",
+    "import/no-unresolved": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/jsx-one-expression-per-line": "off"
   }
 }

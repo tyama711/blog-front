@@ -13,7 +13,7 @@ export default function Arrow(props: ArrowProps) {
       return <ArrowSVG className="down arrow" transform="rotate(90)" />;
     case "left":
       return <ArrowSVG className="left arrow" transform="rotate(180)" />;
-    case "right":
+    default:
       return <ArrowSVG className="right arrow" />;
   }
 }
