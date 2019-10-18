@@ -55,6 +55,7 @@ class App extends Component<{}, AppState> {
               </Route>
             </Switch>
           </Suspense>
+          <img src="https://www.simple-counter.com/hit.php?id=zmnaxo&nd=8&nc=4&bc=1"/>
         </div>
       </Router>
     );

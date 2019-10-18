@@ -66,28 +66,28 @@ export default class Home extends Component<RouteComponentProps, HomeState> {
     });
 
     Api.fetchArticles(page)
-      .then(res => {
-        const { total, articles } = res;
-        if (articles.length === 0) {
-          this.setState({
-            fetchStatus: FetchStatus.NOT_FOUND,
-            articles: [],
-            totalArticles: total
-          });
-        } else {
-          this.setState({
-            fetchStatus: FetchStatus.SUCCEEDED,
-            articles: articles,
-            totalArticles: total,
-            currentPage: page
-          });
-        }
-      })
-      .catch(error => {
-        this.setState({
-          fetchStatus: FetchStatus.FAILED
-        });
-      });
+       .then(res => {
+         const { total, articles } = res;
+         if (articles.length === 0) {
+           this.setState({
+             fetchStatus: FetchStatus.NOT_FOUND,
+             articles: [],
+             totalArticles: total
+           });
+         } else {
+           this.setState({
+             fetchStatus: FetchStatus.SUCCEEDED,
+             articles: articles,
+             totalArticles: total,
+             currentPage: page
+           });
+         }
+       })
+       .catch(error => {
+         this.setState({
+           fetchStatus: FetchStatus.FAILED
+         });
+       });
   }
 
   render() {
@@ -103,7 +103,6 @@ export default class Home extends Component<RouteComponentProps, HomeState> {
           totalArticles={this.state.totalArticles}
           currentPage={this.state.currentPage}
         />
-        <script type="text/javascript" src="http://www.websitegoodies.com/counter.php?id=73594&color="></script>
       </>
     );
   }
