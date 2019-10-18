@@ -54,7 +54,7 @@ export default class EditForm extends Component<EditFormProps, EditFormState> {
     return (
       <>
         <header className="page-header">
-          <h3>{editType == "new" ? "New Article" : "Edit Article"}</h3>
+          <h3>{editType === "new" ? "New Article" : "Edit Article"}</h3>
         </header>
         <main className="site-main">
           <div className="form-group">
@@ -86,7 +86,7 @@ export default class EditForm extends Component<EditFormProps, EditFormState> {
             className="btn btn-primary"
             onClick={async () => this.handleClickButton()}
           >
-            {editType == "new" ? "Post!!" : "Update!!"}
+            {editType === "new" ? "Post!!" : "Update!!"}
           </button>
         </main>
       </>
