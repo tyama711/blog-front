@@ -9,9 +9,7 @@ export interface FetchArticlesResponse {
   articles: Array<Article>;
 }
 
-export async function fetchArticles(
-  page: number = 1
-): Promise<FetchArticlesResponse> {
+export async function fetchArticles(page = 1): Promise<FetchArticlesResponse> {
   const response = await axios.get<FetchArticlesResponse>(
     Constants.ARTICLE_API_URL,
     {
@@ -61,7 +59,7 @@ export async function updateArticle(
   abstract?: string
 ) {
   await axios.put(
-    Constants.ARTICLE_API_URL + "/" + id,
+    `${Constants.ARTICLE_API_URL}/${id}`,
     {
       title,
       content: {

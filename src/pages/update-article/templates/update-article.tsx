@@ -33,9 +33,9 @@ export default class UpdateArticle extends Component<
   }
 
   async updateArticle(title: string, body: string) {
-    const id = this.props.match.params.id;
+    const { id } = this.props.match.params;
     await Api.updateArticle(id, title, body);
-    this.props.history.push("../" + id);
+    this.props.history.push(`../${id}`);
   }
 
   async fetchArticle() {

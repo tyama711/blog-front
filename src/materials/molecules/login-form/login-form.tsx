@@ -35,7 +35,9 @@ export default class LoginForm extends React.Component<
   LoginFormState
 > {
   private subtitle: HTMLHeadingElement | null;
+
   private username: HTMLInputElement | null;
+
   private password: HTMLInputElement | null;
 
   constructor(props: LoginFormProps) {

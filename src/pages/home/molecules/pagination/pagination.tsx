@@ -25,13 +25,12 @@ export default function Pagination(props: PaginationProps) {
         {_.range(1, totalPages + 1).map(page => {
           if (page === props.currentPage) {
             return <PageNumber key={page} page={page} current />;
-          } else {
-            return (
-              <Link key={page} to={`?page=${page}`}>
-                <PageNumber page={page} />
-              </Link>
-            );
           }
+          return (
+            <Link key={page} to={`?page=${page}`}>
+              <PageNumber page={page} />
+            </Link>
+          );
         })}
 
         {props.currentPage < totalPages && (

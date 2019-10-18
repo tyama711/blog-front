@@ -24,7 +24,7 @@ class Constants {
   }
 
   public static get TOKEN_SIG_NAME() {
-    return constants.TOKEN_NAME + ".sig";
+    return `${constants.TOKEN_NAME}.sig`;
   }
 }
 

@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
 import User from "./models/interfaces/user";
 import Masthead from "./materials/organisms/masthead";
+
 const Home = lazy(() => import("./pages/home/templates/home"));
-const Article = lazy(() =>
-  import("./pages/article/templates/article")
-);
+const Article = lazy(() => import("./pages/article/templates/article"));
 const NewArticle = lazy(() =>
   import("./pages/new-article/templates/new-article")
 );
@@ -39,7 +38,7 @@ class App extends Component<{}, AppState> {
               this.setState({ user: undefined });
             }}
           />
-          <Suspense fallback={"Loading ..."}>
+          <Suspense fallback="Loading ...">
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/article/new" exact component={NewArticle} />} />
@@ -55,7 +54,7 @@ class App extends Component<{}, AppState> {
               </Route>
             </Switch>
           </Suspense>
-          <img src="https://www.simple-counter.com/hit.php?id=zmnaxo&nd=8&nc=4&bc=1"/>
+          <img src="https://www.simple-counter.com/hit.php?id=zmnaxo&nd=8&nc=4&bc=1" />
         </div>
       </Router>
     );
