@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as ArrowSVG } from '../../../../resources/svg/right-arrow.svg'
+import { ReactComponent as ArrowSVG } from '../../../resources/svg/right-arrow.svg'
 
 interface ArrowProps {
   direction: 'up' | 'down' | 'left' | 'right'

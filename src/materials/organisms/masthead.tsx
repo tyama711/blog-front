@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import BlogTitle from '../../atoms/blog-title'
-import LoginForm from '../../molecules/login-form'
-import User from '../../../models/interfaces/user'
-import { logoutUser } from '../../../helpers/api'
+import BlogTitle from '../atoms/blog-title'
+import LoginForm from '../molecules/login-form'
+import User from '../../models/interfaces/user'
+import { logoutUser } from '../../helpers/api'
 
 interface MastheadProps {
   user?: User

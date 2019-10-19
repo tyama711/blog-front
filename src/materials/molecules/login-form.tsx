@@ -1,8 +1,8 @@
 import React from 'react'
 import Modal from 'react-modal'
 import cn from 'classnames'
-import { loginUser } from '../../../helpers/api'
-import User from '../../../models/interfaces/user'
+import { loginUser } from '../../helpers/api'
+import User from '../../models/interfaces/user'
 
 /* import "./login-form.scss";
  *  */

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import * as _ from 'lodash'
-import PageNumber from '../../atoms/page-number'
-import Arrow from '../../atoms/arrow'
+import PageNumber from '../atoms/page-number'
+import Arrow from '../atoms/arrow'
 
 const PAGE_SIZE = 10
 
