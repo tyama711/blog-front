@@ -1,13 +1,13 @@
-type ContentType = "plain" | "markdown";
+type ContentType = 'plain' | 'markdown'
 
 export default interface ArticleModel {
-  _id: string;
-  createDate: Date;
-  updateDate?: Date;
-  title: string;
-  abstract: string;
+  _id: string
+  createDate: Date
+  updateDate?: Date
+  title: string
+  abstract: string
   content: {
-    type: ContentType;
-    body: string;
-  };
+    type: ContentType
+    body: string
+  }
 }

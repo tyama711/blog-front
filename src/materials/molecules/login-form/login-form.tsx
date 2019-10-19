@@ -1,94 +1,94 @@
-import React from "react";
-import Modal from "react-modal";
-import cn from "classnames";
-import { loginUser } from "../../../helpers/api";
-import User from "../../../models/interfaces/user";
+import React from 'react'
+import Modal from 'react-modal'
+import cn from 'classnames'
+import { loginUser } from '../../../helpers/api'
+import User from '../../../models/interfaces/user'
 
 /* import "./login-form.scss";
  *  */
 const customStyles = {
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
-  }
-};
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+}
 
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement("#root");
+Modal.setAppElement('#root')
 
 interface LoginFormProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onLoginSuccess: (user: User) => void;
+  isOpen: boolean
+  onClose: () => void
+  onLoginSuccess: (user: User) => void
 }
 
 interface LoginFormState {
-  error: boolean;
+  error: boolean
 }
 
 export default class LoginForm extends React.Component<
   LoginFormProps,
   LoginFormState
 > {
-  private subtitle: HTMLHeadingElement | null;
+  private subtitle: HTMLHeadingElement | null
 
-  private username: HTMLInputElement | null;
+  private username: HTMLInputElement | null
 
-  private password: HTMLInputElement | null;
+  private password: HTMLInputElement | null
 
   constructor(props: LoginFormProps) {
-    super(props);
+    super(props)
 
-    this.state = { error: false };
+    this.state = { error: false }
 
-    this.subtitle = null;
-    this.username = null;
-    this.password = null;
+    this.subtitle = null
+    this.username = null
+    this.password = null
   }
 
   afterOpenModal = () => {
     if (this.subtitle !== null) {
       // references are now sync'd and can be accessed.
-      this.subtitle.style.color = "#f00";
+      this.subtitle.style.color = '#f00'
     }
-    this.setState({ error: false });
-  };
+    this.setState({ error: false })
+  }
 
   handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    const { onLoginSuccess, onClose } = this.props;
-    e.preventDefault();
+    const { onLoginSuccess, onClose } = this.props
+    e.preventDefault()
     if (this.username !== null && this.password !== null) {
       try {
-        const user = await loginUser(this.username.value, this.password.value);
-        onLoginSuccess(user);
-        onClose();
+        const user = await loginUser(this.username.value, this.password.value)
+        onLoginSuccess(user)
+        onClose()
       } catch (err) {
-        this.setState({ error: true });
+        this.setState({ error: true })
       }
     }
-  };
+  }
 
   handleFocusInput = (e: React.FocusEvent<HTMLInputElement>) => {
-    const label = document.querySelector(`[for=${e.target.id}]`);
-    if (label && !label.classList.contains("active")) {
-      label.classList.add("active");
+    const label = document.querySelector(`[for=${e.target.id}]`)
+    if (label && !label.classList.contains('active')) {
+      label.classList.add('active')
     }
-  };
+  }
 
   handleBlurInput = (e: React.FocusEvent<HTMLInputElement>) => {
-    const label = document.querySelector(`[for=${e.target.id}]`);
+    const label = document.querySelector(`[for=${e.target.id}]`)
     if (label && !e.target.value) {
-      label.classList.remove("active");
+      label.classList.remove('active')
     }
-  };
+  }
 
   render() {
-    const { isOpen, onClose } = this.props;
-    const { error } = this.state;
+    const { isOpen, onClose } = this.props
+    const { error } = this.state
     return (
       <Modal
         isOpen={isOpen}
@@ -118,7 +118,7 @@ export default class LoginForm extends React.Component<
                 Sign in with your username
               </span>
               <div className="form-group">
-                <div className={cn("form-group", "mb-4")}>
+                <div className={cn('form-group', 'mb-4')}>
                   <input
                     type="username"
                     className="form-control floatLabel"
@@ -128,12 +128,12 @@ export default class LoginForm extends React.Component<
                     onBlur={this.handleBlurInput}
                     autoComplete="username"
                     ref={el => {
-                      this.username = el;
+                      this.username = el
                     }}
                   />
                   <label htmlFor="registerInputUsername">Username</label>
                 </div>
-                <div className={cn("form-group")}>
+                <div className={cn('form-group')}>
                   <input
                     type="password"
                     className="form-control floatLabel mt-2"
@@ -143,7 +143,7 @@ export default class LoginForm extends React.Component<
                     onBlur={this.handleBlurInput}
                     autoComplete="current-password"
                     ref={el => {
-                      this.password = el;
+                      this.password = el
                     }}
                   />
                   <label htmlFor="registerInputPassword">Password</label>
@@ -156,6 +156,6 @@ export default class LoginForm extends React.Component<
           </div>
         </div>
       </Modal>
-    );
+    )
   }
 }

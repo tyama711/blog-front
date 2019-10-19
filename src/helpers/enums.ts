@@ -3,7 +3,7 @@ enum FetchStatus {
   NOT_YET,
   FETCHING,
   FAILED,
-  NOT_FOUND
+  NOT_FOUND,
 }
 
-export default FetchStatus;
+export default FetchStatus

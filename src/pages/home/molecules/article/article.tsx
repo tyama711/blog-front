@@ -1,12 +1,12 @@
-import React from "react";
-import ArticleModel from "../../../../models/interfaces/article";
-import ArticleMetaInfo from "../../../../materials/atoms/article-meta-info";
-import ArticleTitle from "../../../../materials/atoms/article-title";
+import React from 'react'
+import ArticleModel from '../../../../models/interfaces/article'
+import ArticleMetaInfo from '../../../../materials/atoms/article-meta-info'
+import ArticleTitle from '../../../../materials/atoms/article-title'
 
-import "./article.css";
+import './article.css'
 
 interface ArticleProps {
-  article: ArticleModel;
+  article: ArticleModel
 }
 
 export default function Article({ article }: ArticleProps) {
@@ -24,5 +24,5 @@ export default function Article({ article }: ArticleProps) {
       </header>
       <div>{article.abstract}</div>
     </div>
-  );
+  )
 }

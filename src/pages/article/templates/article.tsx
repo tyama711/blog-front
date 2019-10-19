@@ -1,29 +1,29 @@
-import React, { Component } from "react";
-import { RouteComponentProps } from "react-router";
-import { Link } from "react-router-dom";
-import MarkdownRenderer from "@nteract/markdown";
-import ArticleModel from "../../../models/interfaces/article";
-import ArticleMetaInfo from "../../../materials/atoms/article-meta-info";
-import ArticleTitle from "../../../materials/atoms/article-title";
-import { fetchArticle } from "../../../helpers/api";
-import FetchStatus from "../../../helpers/enums";
-import User from "../../../models/interfaces/user";
+import React, { Component } from 'react'
+import { RouteComponentProps } from 'react-router'
+import { Link } from 'react-router-dom'
+import MarkdownRenderer from '@nteract/markdown'
+import ArticleModel from '../../../models/interfaces/article'
+import ArticleMetaInfo from '../../../materials/atoms/article-meta-info'
+import ArticleTitle from '../../../materials/atoms/article-title'
+import { fetchArticle } from '../../../helpers/api'
+import FetchStatus from '../../../helpers/enums'
+import User from '../../../models/interfaces/user'
 
 interface PathParams {
-  id: string;
+  id: string
 }
 
 interface ArticleProps {
-  user?: User;
+  user?: User
 }
 
 interface ArticleState {
-  fetchStatus: FetchStatus;
-  article?: ArticleModel;
+  fetchStatus: FetchStatus
+  article?: ArticleModel
 }
 
 interface ContentProps {
-  article: ArticleModel;
+  article: ArticleModel
 }
 
 export default class Article extends Component<
@@ -31,61 +31,61 @@ export default class Article extends Component<
   ArticleState
 > {
   constructor(props: RouteComponentProps<PathParams> & ArticleProps) {
-    super(props);
+    super(props)
     this.state = {
-      fetchStatus: FetchStatus.NOT_YET
-    };
+      fetchStatus: FetchStatus.NOT_YET,
+    }
   }
 
   componentDidMount() {
-    const { match } = this.props;
+    const { match } = this.props
 
     this.setState({
-      fetchStatus: FetchStatus.FETCHING
-    });
+      fetchStatus: FetchStatus.FETCHING,
+    })
 
     fetchArticle(match.params.id)
       .then(article => {
         this.setState({
           fetchStatus: FetchStatus.SUCCEEDED,
-          article
-        });
+          article,
+        })
       })
       .catch(error => {
         if (error.response && error.response.status === 404) {
           this.setState({
-            fetchStatus: FetchStatus.NOT_FOUND
-          });
+            fetchStatus: FetchStatus.NOT_FOUND,
+          })
         } else {
           this.setState({
-            fetchStatus: FetchStatus.FAILED
-          });
+            fetchStatus: FetchStatus.FAILED,
+          })
         }
-      });
+      })
   }
 
   Content = (props: ContentProps) => {
-    const { article } = props;
+    const { article } = props
     switch (article.content.type) {
-      case "plain":
-        return <>{article.content.body}</>;
-      case "markdown":
-        return <MarkdownRenderer source={article.content.body} />;
+      case 'plain':
+        return <>{article.content.body}</>
+      case 'markdown':
+        return <MarkdownRenderer source={article.content.body} />
       default:
-        return <>Wrong ContentType !!!</>;
+        return <>Wrong ContentType !!!</>
     }
-  };
+  }
 
   render() {
-    const { user, match } = this.props;
-    const { fetchStatus, article } = this.state;
+    const { user, match } = this.props
+    const { fetchStatus, article } = this.state
 
     switch (fetchStatus) {
       case FetchStatus.NOT_YET:
       case FetchStatus.FETCHING:
-        return <>Loading ...</>;
+        return <>Loading ...</>
       case FetchStatus.NOT_FOUND:
-        return <>Resource Not Found !!!</>;
+        return <>Resource Not Found !!!</>
       case FetchStatus.SUCCEEDED:
         return (
           article && (
@@ -108,9 +108,9 @@ export default class Article extends Component<
               <this.Content article={article} />
             </>
           )
-        );
+        )
       default:
-        return <>Something Wrong !!!</>;
+        return <>Something Wrong !!!</>
     }
   }
 }

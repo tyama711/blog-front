@@ -1,42 +1,42 @@
-import React, { Component, lazy, Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Cookies from "js-cookie";
-import User from "./models/interfaces/user";
-import Masthead from "./materials/organisms/masthead";
+import React, { Component, lazy, Suspense } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import User from './models/interfaces/user'
+import Masthead from './materials/organisms/masthead'
 
-const Home = lazy(() => import("./pages/home/templates/home"));
-const Article = lazy(() => import("./pages/article/templates/article"));
+const Home = lazy(() => import('./pages/home/templates/home'))
+const Article = lazy(() => import('./pages/article/templates/article'))
 const NewArticle = lazy(() =>
-  import("./pages/new-article/templates/new-article")
-);
+  import('./pages/new-article/templates/new-article')
+)
 const UpdateArticle = lazy(() =>
-  import("./pages/update-article/templates/update-article")
-);
+  import('./pages/update-article/templates/update-article')
+)
 
 interface AppState {
-  user?: User;
+  user?: User
 }
 
 class App extends Component<{}, AppState> {
   constructor(props: {}) {
-    super(props);
-    this.state = { user: Cookies.getJSON("loggedUser") };
+    super(props)
+    this.state = { user: Cookies.getJSON('loggedUser') }
   }
 
   render() {
-    const { user } = this.state;
+    const { user } = this.state
     return (
       <Router>
         <div className="app">
           <Masthead
             user={user}
             onLoginSuccess={username => {
-              Cookies.set("loggedUser", username, { expires: 1 /* days */ });
-              this.setState({ user: username });
+              Cookies.set('loggedUser', username, { expires: 1 /* days */ })
+              this.setState({ user: username })
             }}
             onLogoutSuccess={() => {
-              Cookies.remove("loggedUser");
-              this.setState({ user: undefined });
+              Cookies.remove('loggedUser')
+              this.setState({ user: undefined })
             }}
           />
           <Suspense fallback="Loading ...">
@@ -60,8 +60,8 @@ class App extends Component<{}, AppState> {
           />
         </div>
       </Router>
-    );
+    )
   }
 }
 
-export default App;
+export default App

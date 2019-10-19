@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function BlogTitle() {
   return (
@@ -8,5 +8,5 @@ export default function BlogTitle() {
         <h1>ブログつくりました。</h1>
       </Link>
     </div>
-  );
+  )
 }

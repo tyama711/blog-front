@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react'
 
-import "./page-number.css";
+import './page-number.css'
 
 interface PageNumberProps {
-  page: number;
-  current: boolean;
+  page: number
+  current: boolean
 }
 
 export default function PageNumber({ current, page }: PageNumberProps) {
   if (current) {
-    return <span className="page-numbers current">{page}</span>;
+    return <span className="page-numbers current">{page}</span>
   }
-  return <span className="page-numbers">{page}</span>;
+  return <span className="page-numbers">{page}</span>
 }
 
 PageNumber.defaultProps = {
-  current: false
-};
+  current: false,
+}

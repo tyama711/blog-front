@@ -1,43 +1,43 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import BlogTitle from "../../atoms/blog-title";
-import LoginForm from "../../molecules/login-form";
-import User from "../../../models/interfaces/user";
-import { logoutUser } from "../../../helpers/api";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import BlogTitle from '../../atoms/blog-title'
+import LoginForm from '../../molecules/login-form'
+import User from '../../../models/interfaces/user'
+import { logoutUser } from '../../../helpers/api'
 
 interface MastheadProps {
-  user?: User;
-  onLoginSuccess: (user: User) => void;
-  onLogoutSuccess: () => void;
+  user?: User
+  onLoginSuccess: (user: User) => void
+  onLogoutSuccess: () => void
 }
 
 interface MastheadState {
-  loginFormIsOpen: boolean;
+  loginFormIsOpen: boolean
 }
 
 export default class Masthead extends Component<MastheadProps, MastheadState> {
   constructor(props: MastheadProps) {
-    super(props);
+    super(props)
 
-    this.state = { loginFormIsOpen: false };
+    this.state = { loginFormIsOpen: false }
 
-    this.openLoginForm = this.openLoginForm.bind(this);
-    this.closeLoginForm = this.closeLoginForm.bind(this);
+    this.openLoginForm = this.openLoginForm.bind(this)
+    this.closeLoginForm = this.closeLoginForm.bind(this)
   }
 
   openLoginForm() {
-    this.setState({ loginFormIsOpen: true });
+    this.setState({ loginFormIsOpen: true })
   }
 
   closeLoginForm() {
-    this.setState({ loginFormIsOpen: false });
+    this.setState({ loginFormIsOpen: false })
   }
 
   render() {
-    const { user, onLoginSuccess, onLogoutSuccess } = this.props;
-    const { loginFormIsOpen } = this.state;
+    const { user, onLoginSuccess, onLogoutSuccess } = this.props
+    const { loginFormIsOpen } = this.state
 
-    let userInfoElement;
+    let userInfoElement
     if (user !== undefined) {
       userInfoElement = (
         <div className="user-info">
@@ -64,8 +64,8 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
                 href="#"
                 className="dropdown-item"
                 onClick={() => {
-                  logoutUser();
-                  onLogoutSuccess();
+                  logoutUser()
+                  onLogoutSuccess()
                 }}
               >
                 Logout
@@ -73,7 +73,7 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
             </div>
           </div>
         </div>
-      );
+      )
     } else {
       userInfoElement = (
         <div className="user-info">
@@ -85,7 +85,7 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
             Sign in
           </a>
         </div>
-      );
+      )
     }
 
     return (
@@ -100,6 +100,6 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
           />
         </header>
       </div>
-    );
+    )
   }
 }
