@@ -20,16 +20,13 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
     super(props)
 
     this.state = { loginFormIsOpen: false }
-
-    this.openLoginForm = this.openLoginForm.bind(this)
-    this.closeLoginForm = this.closeLoginForm.bind(this)
   }
 
-  openLoginForm() {
+  openLoginForm = () => {
     this.setState({ loginFormIsOpen: true })
   }
 
-  closeLoginForm() {
+  closeLoginForm = () => {
     this.setState({ loginFormIsOpen: false })
   }
 

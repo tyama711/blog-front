@@ -24,21 +24,17 @@ export default class EditForm extends Component<EditFormProps, EditFormState> {
       body: props.initBody || '',
       fetchStatus: FetchStatus.NOT_YET,
     }
-
-    this.handleChangeTitle = this.handleChangeTitle.bind(this)
-    this.handleChangeText = this.handleChangeText.bind(this)
-    this.handleClickButton = this.handleClickButton.bind(this)
   }
 
-  handleChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
+  handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ title: e.target.value })
   }
 
-  handleChangeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
+  handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ body: e.target.value })
   }
 
-  async handleClickButton() {
+  handleClickButton = async () => {
     const { postArticleFunc } = this.props
     const { title, body, fetchStatus } = this.state
 

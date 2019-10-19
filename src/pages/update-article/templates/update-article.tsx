@@ -23,22 +23,19 @@ export default class UpdateArticle extends Component<
     super(props)
 
     this.state = { fetchStatus: FetchStatus.NOT_YET, title: '', body: '' }
-
-    this.updateArticle = this.updateArticle.bind(this)
-    this.fetchArticle = this.fetchArticle.bind(this)
   }
 
   componentDidMount() {
     this.fetchArticle()
   }
 
-  async updateArticle(title: string, body: string) {
+  updateArticle = async (title: string, body: string) => {
     const { match, history } = this.props
     await Api.updateArticle(match.params.id, title, body)
     history.push(`../${match.params.id}`)
   }
 
-  async fetchArticle() {
+  fetchArticle = async () => {
     const { match } = this.props
     try {
       this.setState({ fetchStatus: FetchStatus.FETCHING })
