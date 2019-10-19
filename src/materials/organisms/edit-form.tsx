@@ -63,23 +63,27 @@ export default class EditForm extends Component<EditFormProps, EditFormState> {
         </header>
         <main className="site-main">
           <div className="form-group">
-            <label htmlFor="articleTitle">Title</label>
-            <input
-              className="form-control"
-              id="articleTitle"
-              onChange={this.handleChangeTitle}
-              value={title}
-            />
+            <label htmlFor="articleTitle">
+              Title
+              <input
+                className="form-control"
+                id="articleTitle"
+                onChange={this.handleChangeTitle}
+                value={title}
+              />
+            </label>
           </div>
           <div className="form-group">
-            <label htmlFor="articleText">Text</label>
-            <textarea
-              className="form-control"
-              id="articleText"
-              rows={3}
-              onChange={this.handleChangeText}
-              value={body}
-            />
+            <label htmlFor="articleText">
+              Text
+              <textarea
+                className="form-control"
+                id="articleText"
+                rows={3}
+                onChange={this.handleChangeText}
+                value={body}
+              />
+            </label>
           </div>
           {error && (
             <p className="text-danger">

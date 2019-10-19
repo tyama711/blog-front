@@ -42,17 +42,16 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
       userInfoElement = (
         <div className="user-info">
           <div className="dropdown">
-            <a
-              href="#"
+            <button
+              type="button"
               id="dropdownMenuLink"
               className="btn btn-primary dropdown-toggle"
               data-toggle="dropdown"
-              role="button"
               aria-haspopup="true"
               aria-expanded="false"
             >
               {user.username}
-            </a>
+            </button>
             <div
               className="dropdown-menu dropdown-menu-right pull-right"
               aria-labelledby="dropdownMenuLink"
@@ -60,8 +59,8 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
               <Link to="/article/new" className="dropdown-item">
                 New Article
               </Link>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="dropdown-item"
                 onClick={() => {
                   logoutUser()
@@ -69,7 +68,7 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
                 }}
               >
                 Logout
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -77,13 +76,13 @@ export default class Masthead extends Component<MastheadProps, MastheadState> {
     } else {
       userInfoElement = (
         <div className="user-info">
-          <a
-            href="#"
+          <button
+            type="button"
             className="btn btn-secondary"
             onClick={this.openLoginForm}
           >
             Sign in
-          </a>
+          </button>
         </div>
       )
     }
