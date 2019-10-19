@@ -1,6 +1,113 @@
-@import "node_modules/bootstrap/scss/_functions";
-@import "node_modules/bootstrap/scss/_variables";
+// @import "node_modules/bootstrap/scss/_functions";
+// @import "node_modules/bootstrap/scss/_variables";
 @import "node_modules/bootstrap/scss/bootstrap";
+
+.app {
+  max-width: 767.98px;
+  margin: auto;
+
+  .user-info {
+    float: right;
+  }
+
+  .edit-button {
+    float: right;
+  }
+
+  .article-title {
+    font-size: 30px;
+    margin-block-start: 0.2em;
+  }
+
+  .article-meta-info {
+    color: gray;
+    font-weight: bold;
+  }
+
+  .pagination {
+    border-top: 1px solid #eee;
+    /* font-size: 14px; */
+    font-size: 1.2rem;
+    padding: 2em 0 3em;
+    text-align: center;
+    line-height: 1;
+
+    .arrow {
+      background-color: #ddd;
+      border-radius: 2px;
+      display: inline-block;
+      /* font-size: 24px; */
+      /* font-size: 1.5rem; */
+      /* padding: 0.25em; */
+      width: 1.2em;
+      height: 1.2em;
+
+      path {
+        stroke-width: 4;
+      }
+
+      .left {
+        float: left;
+      }
+
+      .right {
+        float: right;
+      }
+    }
+
+    .page-numbers {
+      padding: 0em 0.75em;
+    }
+
+    .page-numbers.current {
+      color: #767676;
+      display: inline-block;
+    }
+  }
+
+  .page-numbers {
+    padding: 0em 0.75em;
+  }
+
+  .page-numbers.current {
+    color: #767676;
+    display: inline-block;
+  }
+
+  .article {
+    padding-bottom: 4em;
+  }
+
+}
+
+.masthead {
+  nav{
+    .navbar-nav li {
+      cursor: pointer;
+    }
+
+    .img-profile {
+      height: 30px;
+      width: 30px;
+    }
+
+    .navbar .container-fluid {
+      max-width: 1300px;
+    }
+
+    .dropdown-menu {
+      &__item{
+        cursor: pointer;
+
+        &:hover{
+          .btn{
+            background-color: $gray-200;
+          }
+        }
+      }
+    }
+  }
+}
 
 .login-form{
   max-width: 500px;
@@ -51,7 +158,7 @@
       &.active{
         top: -19px;
         color: #555;
-         background-color: rgba(255,255,255,1);
+        background-color: rgba(255,255,255,1);
       }
     }
   }

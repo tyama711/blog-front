@@ -27,6 +27,10 @@ class App extends Component<{}, AppState> {
     const { user } = this.state
     return (
       <Router>
+        <link
+          href="http://jasonm23.github.io/markdown-css-themes/markdown.css"
+          rel="stylesheet"
+        />
         <div className="app">
           <Masthead
             user={user}

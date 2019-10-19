@@ -1,7 +1,5 @@
 import React from 'react'
 
-import './page-number.css'
-
 interface PageNumberProps {
   page: number
   current: boolean
