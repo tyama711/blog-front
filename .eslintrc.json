@@ -4,26 +4,29 @@
     "browser": true,
     "jest/globals": true
   },
-  "extends": ["airbnb",
-              "plugin:@typescript-eslint/recommended",
-              "plugin:prettier/recommended",
-              "prettier/@typescript-eslint"],
+  "extends": [
+    "airbnb",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint",
-              "prettier",
-              "jest"],
+  "plugins": ["@typescript-eslint", "prettier", "jest"],
   "rules": {
     "prettier/prettier": "error",
     "no-use-before-define": "off", // "@typescript-eslint/no-use-before-define"と重複するので無効化
-    "import/no-unresolved": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
-    "react/jsx-props-no-spreading": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/jsx-props-no-spreading": [
+      "error",
+      { "custom": "enforce", "exceptions": ["Article"] }
+    ],
     "react/jsx-one-expression-per-line": "off",
-    "import/no-extraneous-dependencies": ["warn", { "packageDir": "." } ],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "import/no-extraneous-dependencies": ["warn", { "packageDir": "." }],
     "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   }
 }
