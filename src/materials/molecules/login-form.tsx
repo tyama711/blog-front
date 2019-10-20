@@ -117,38 +117,34 @@ export default class LoginForm extends React.Component<
               </span>
               <div className="form-group">
                 <div className={cn('form-group', 'mb-4')}>
-                  <label htmlFor="registerInputUsername">
-                    Username
-                    <input
-                      type="username"
-                      className="form-control floatLabel"
-                      id="registerInputUsername"
-                      required
-                      onFocus={this.handleFocusInput}
-                      onBlur={this.handleBlurInput}
-                      autoComplete="username"
-                      ref={el => {
-                        this.username = el
-                      }}
-                    />
-                  </label>
+                  <input
+                    type="username"
+                    className="form-control floatLabel"
+                    id="registerInputUsername"
+                    required
+                    onFocus={this.handleFocusInput}
+                    onBlur={this.handleBlurInput}
+                    autoComplete="username"
+                    ref={el => {
+                      this.username = el
+                    }}
+                  />
+                  <label htmlFor="registerInputUsername">Username</label>
                 </div>
                 <div className={cn('form-group')}>
-                  <label htmlFor="registerInputPassword">
-                    Password
-                    <input
-                      type="password"
-                      className="form-control floatLabel mt-2"
-                      id="registerInputPassword"
-                      required
-                      onFocus={this.handleFocusInput}
-                      onBlur={this.handleBlurInput}
-                      autoComplete="current-password"
-                      ref={el => {
-                        this.password = el
-                      }}
-                    />
-                  </label>
+                  <input
+                    type="password"
+                    className="form-control floatLabel mt-2"
+                    id="registerInputPassword"
+                    required
+                    onFocus={this.handleFocusInput}
+                    onBlur={this.handleBlurInput}
+                    autoComplete="current-password"
+                    ref={el => {
+                      this.password = el
+                    }}
+                  />
+                  <label htmlFor="registerInputPassword">Password</label>
                 </div>
               </div>
               <button type="submit" className="btn login-form__signIn">
