@@ -28,7 +28,7 @@ class App extends Component<{}, AppState> {
     return (
       <Router>
         <link
-          href="http://jasonm23.github.io/markdown-css-themes/markdown.css"
+          href="https://jasonm23.github.io/markdown-css-themes/markdown.css"
           rel="stylesheet"
         />
         <div className="app">
